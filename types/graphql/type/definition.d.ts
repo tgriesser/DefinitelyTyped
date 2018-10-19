@@ -154,20 +154,17 @@ export function assertAbstractType(type: any): GraphQLAbstractType;
  *     })
  *
  */
-interface GraphQLList<T extends GraphQLType> {
+export class GraphQLList<T extends GraphQLType> {
     readonly ofType: T;
+    constructor(ofType: T);
     toString(): string;
     toJSON(): string;
     inspect(): string;
 }
 
-
-interface _GraphQLList<T extends GraphQLType> {
+export interface GraphQLList<T extends GraphQLType> {
     (type: T): GraphQLList<T>;
-    new (type: T): GraphQLList<T>;
 }
-
-export const GraphQLList: _GraphQLList<GraphQLType>;
 
 /**
  * Non-Null Modifier
@@ -189,19 +186,17 @@ export const GraphQLList: _GraphQLList<GraphQLType>;
  *
  * Note: the enforcement of non-nullability occurs within the executor.
  */
-interface GraphQLNonNull<T extends GraphQLNullableType> {
+export class GraphQLNonNull<T extends GraphQLNullableType> {
     readonly ofType: T;
+    constructor(ofType: T);
     toString(): string;
     toJSON(): string;
     inspect(): string;
 }
 
-interface _GraphQLNonNull<T extends GraphQLNullableType> {
+export interface GraphQLNonNull<T extends GraphQLNullableType> {
     (type: T): GraphQLNonNull<T>;
-    new (type: T): GraphQLNonNull<T>;
 }
-
-export const GraphQLNonNull: _GraphQLNonNull<GraphQLNullableType>;
 
 export type GraphQLWrappingType = GraphQLList<any> | GraphQLNonNull<any>;
 
